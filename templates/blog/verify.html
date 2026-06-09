@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .email-display {
+            text-align: center;
+            color: #4ade80;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            word-break: break-all;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+            text-align: center;
+            letter-spacing: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        input:focus {
+            border-color: #4ade80;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #4ade80;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #22c55e;
+        }
+
+        .resend {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .resend a {
+            color: #4ade80;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">🔐</div>
+        <h2>Enter OTP</h2>
+        <p>OTP sent to</p>
+        <div class="email-display">{{ email }}</div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label>Enter 6 digit OTP</label>
+            <input type="number" name="otp" placeholder="000000" required maxlength="6">
+            <button type="submit">Verify</button>
+        </form>
+
+        <div class="resend">
+            Didn't receive? <a href="{% url 'send_otp' %}">Resend OTP</a>
+        </div>
+    </div>
+</body>
+</html>

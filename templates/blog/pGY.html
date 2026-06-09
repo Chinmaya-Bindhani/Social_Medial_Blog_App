@@ -1,0 +1,17 @@
+{% if page_obj.has_previous %}
+<div class="pagination-glass">
+    <a href="?page=1" class="btn btn-success">First</a>
+    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Previous</a>
+{% else %}
+<div class="pagination-glass">
+{% endif %}
+
+    <span class="btn btn-outline-danger" style="cursor: default;">{{ page_obj.number }}</span>
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-warning">Next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-danger">Last</a>
+</div>
+{% else %}
+</div>
+{% endif %}

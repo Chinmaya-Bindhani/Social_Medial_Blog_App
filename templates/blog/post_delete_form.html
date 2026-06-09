@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+Delete Post - MyBlog
+{% endblock %}
+
+{% block body %}
+{% if post %}
+<div class="content-section text-center" style="max-width: 500px; margin: 2rem auto;">
+    <div class="mb-4">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">⚠️</div>
+        <h2 style="font-weight: 700; color: var(--text-dark);">Are you sure?</h2>
+        <p style="color: var(--text-muted);">You are about to delete "<strong>{{ post.title }}</strong>". This action cannot be undone.</p>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="d-flex gap-2 justify-content-center">
+            <input type="submit" value="Yes, Delete" class="btn btn-danger">
+            <a href="{% url 'home' %}" class="btn btn-primary">No, Take Me Back</a>
+        </div>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

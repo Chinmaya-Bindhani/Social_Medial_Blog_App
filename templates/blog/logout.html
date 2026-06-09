@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+Logout - MyBlog
+{% endblock %}
+
+{% block body %}
+<div class="content-section text-center" style="max-width: 500px; margin: 2rem auto; animation: fadeInUp 0.5s ease;">
+    <div style="font-size: 4rem; margin-bottom: 1rem;">👋</div>
+    <h2 style="font-weight: 700; margin-bottom: 0.5rem;">Thanks for visiting!</h2>
+    <p style="color: var(--text-muted); margin-bottom: 2rem;">You have been successfully logged out.</p>
+    <a href="{% url 'login' %}" class="btn btn-success" target="_self">Sign In Again</a>
+</div>
+{% endblock %}

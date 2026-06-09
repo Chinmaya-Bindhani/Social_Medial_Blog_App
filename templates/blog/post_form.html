@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_filters %}
+
+{% block title %}
+New Post - MyBlog
+{% endblock %}
+
+{% block body %}
+<div class="content-section">
+    <div class="mb-4">
+        <h2 style="font-weight: 700;">{% if form.instance.id %}Edit Post{% else %}Create New Post{% endif %}</h2>
+        <p style="color: var(--text-muted);">Share your thoughts with the world</p>
+    </div>
+    {% if form %}
+    <form method="POST" id="create" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex gap-2 mt-4">
+            <input type="submit" value="{% if form.instance.id %}Update Post{% else %}Publish Post{% endif %}" class="btn btn-success">
+            <a href="{% url 'home' %}" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

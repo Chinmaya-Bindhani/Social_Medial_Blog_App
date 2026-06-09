@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .icon {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4ade80;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #4ade80;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #22c55e;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #4ade80;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">📧</div>
+        <h2>Email Verification</h2>
+        <p>Enter your registered email to receive OTP</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Send OTP</button>
+        </form>
+
+        <div class="footer">
+            Remember your password? <a href="{% url 'login' %}">Sign In</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+{{ post.title }} - MyBlog
+{% endblock %}
+
+{% block body %}
+{% if post %}
+<div class="container post-card" >
+    <article class="article-body">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center">
+                <img src="{{ post.author.profile.image.url }}" style="height:50px; width:50px; border-radius:50%;" class="me-3">
+                <div>
+                    <a href="#" class="article-author">{{ post.author.username }}</a>
+                    <br>
+                    <small class="text-muted">{{ post.date_posted|date:'d-m-Y, H:i' }}</small>
+                </div>
+            </div>
+            {% if request.user == post.author %}
+            <div class="d-flex gap-2">
+                <a href="{% url 'post-update' post.id %}" class="btn btn-success">Edit</a>
+                <a href="{% url 'post-delete' post.id %}" class="btn btn-danger">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+        <hr style="border-color: rgba(0,0,0,0.05);">
+        <h1 class="article-title" style="font-size: 2rem; margin-bottom: 1.5rem;">{{ post.title|upper }}</h1>
+        <div class="article-cotent" style="font-size: 1.1rem; line-height: 1.8;">
+            {{ post.content }}
+        </div>
+        <hr style="border-color: rgba(0,0,0,0.05); margin-top: 2rem;">
+        <a href="{% url 'home' %}" class="btn btn-primary" target="_self">← Back to Home</a>
+    </article>
+</div>
+{% endif %}
+{% endblock %}
